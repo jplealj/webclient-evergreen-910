@@ -20,7 +20,7 @@ def crearSensor():
 
 @app.route('/listarSensores', methods=['GET'])
 def listarSensores():
-    mediciones_list = requests.get('https://api-evergreen-910.azurewebsites.net/mediciones').json()
+    mediciones_list = requests.get('https://api-evergreen-910.azurewebsites.net').json()
     return render_template('listarSensores.html', mediciones=mediciones_list)
 
 @app.route('/guardarSensor', methods=['POST'])
@@ -31,7 +31,7 @@ def guardarSensor():
     medicion['fecha'] = str(medicion['fecha'])
     medicion['codigoSensor'] = int(medicion['codigoSensor'])
     medicion['observacion'] = str(medicion['observacion'])
-    requests.post('https://api-evergreen-910.azurewebsites.net/mediciones',json=medicion)
+    requests.post('https://api-evergreen-910.azurewebsites.net',json=medicion)
     return (listarSensores())
 
 
